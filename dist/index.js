@@ -7293,6 +7293,9 @@ exports.run = async function () {
       async (prerelease) => {
           await octokit.repos.deleteRelease({owner, repo, release_id: prerelease.id})
           if (deleteTags) {
+            console.log("Deleting tags")
+            console.log(deleteTags)
+            console.log(core.getInput("delete-tags"))
             await octokit.git.deleteRef({ owner, repo, ref: `tags/${prerelease.tag_name}`})
           }
       }
