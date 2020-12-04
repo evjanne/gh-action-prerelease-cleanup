@@ -7278,7 +7278,7 @@ const { getOctokit, context } = __webpack_require__(438);
 
 exports.run = async function () {
   const token = core.getInput("github-token", { required: true });
-  const deleteTags = core.getInput("delete-tags") == "true";
+  const deleteTags = core.getInput("delete-tags") === "true";
   const octokit = getOctokit(token);
   const { owner, repo } = context.repo
   const options = octokit.repos.listReleases.endpoint.merge({owner,repo})
