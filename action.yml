@@ -4,6 +4,10 @@ inputs:
   github-token:
     description: "GitHub token"
     required: true
+  delete-tags:
+    description: "Delete release tags"
+    required: false
+    default: true
 runs:
   using: "node12"
   main: "dist/index.js"
