@@ -7,8 +7,8 @@ exports.run = async function () {
   const deleteTags = core.getInput("delete-tags") === "true";
   const octokit = getOctokit(token);
   const { owner, repo } = context.repo;
-  const options = octokit.repos.listReleases.endpoint.merge({ owner, repo });
-  const releases = await octokit.paginate(options);
+  const listReleases = octokit.repos.listReleases.endpoint.merge({ owner, repo });
+  const releases = await octokit.paginate(listReleases);
   const latestRelease = releases
     .filter((release) => !release.prerelease)
     .map((release) => release.tag_name)
