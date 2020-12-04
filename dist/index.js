@@ -5790,11 +5790,13 @@ exports.run = async function () {
   const octokit = getOctokit(token);
   const currentRelease = await getCurrentRelease();
   const { owner, repo } = context.repo
-  const relases = await octokit.paginate(octokit.repos.listReleases.endpoint.merge({owner, repo}))
+  const options = octokit.repos.listReleases.endpoint.merge({owner,repo})
+  console.log(options)
+  const releases = await octokit.paginate(options)
   const tags = await octokit.paginate(
     octokit.repos.listTags.endpoint.merge({ owner, repo })
   );
-  console.log(JSON.stringify(relases.data))
+  console.log(JSON.stringify(releases))
   console.log(JSON.stringify(tags))
 };
 
