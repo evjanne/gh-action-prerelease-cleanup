@@ -1,0 +1,11 @@
+name: Prerelease cleanup
+
+on: push
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./
+        with:
+          github-token: ${GITHUB_TOKEN}
