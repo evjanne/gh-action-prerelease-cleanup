@@ -12,6 +12,7 @@ exports.run = async function () {
   const outdatedPrereleases = releases.filter(release => release.prerelease).filter(release => semver.lt(release.tag_name, latestRelease))
   console.log(`Latest release is ${latestRelease}`);
   console.log("Outdated prereleases are:")
+  outdatedPrereleases.map((prerelease) => console.log(prerelease.tag_name));
   console.log(JSON.stringify(outdatedPrereleases))
   await Promise.all(outdatedPrereleases.map(
       async (prerelease) => {
