@@ -7287,6 +7287,11 @@ exports.run = async function () {
   console.log(`Latest release is ${latestRelease}`);
   console.log("Outdated prereleases are:")
   console.log(JSON.stringify(outdatedPrereleases))
+  await Promise.all(outdatedPrereleases.map(
+      async (prerelease) => {
+          await octokit.repos.deleteRelease({owner, repo, release_id: prerelease.id})
+      }
+  ))
 };
 
 
