@@ -1,0 +1,9 @@
+name: "Prerelease Cleanup Action"
+description: "Remove old prereleases while maintaining actual releases"
+inputs:
+  github-token:
+    description: "GitHub token"
+    required: true
+runs:
+  using: "node12"
+  main: "dist/index.js"
