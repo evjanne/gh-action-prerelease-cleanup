@@ -10,7 +10,7 @@ exports.run = async function () {
   const options = octokit.repos.listReleases.endpoint.merge({owner,repo})
   const releases = await octokit.paginate(options)
   const latestRelease = releases.filter(release => !release.prerelease).map((release) => release.tag_name).sort(semver.rcompare).shift();
-  const outdatedPrereleases = releases.filter(release => release.prerelease).filter(release => semver.lt(release.tag_name, latestRelease))
+  const outdatedPrereleases = releases.filter(release => release.prerelease).filter(release => semver.lt(release.tag_name, latestRelease, {includePrerelease: true}))
   console.log(`Latest release is ${latestRelease}`);
   console.log("Outdated prereleases are:")
   outdatedPrereleases.map((prerelease) => console.log(prerelease.tag_name));
