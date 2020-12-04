@@ -16,6 +16,7 @@ exports.run = async function () {
   await Promise.all(outdatedPrereleases.map(
       async (prerelease) => {
           await octokit.repos.deleteRelease({owner, repo, release_id: prerelease.id})
+          await octokit.git.deleteRef({ owner, repo, ref: `refs/tags/${prerelease.tag_name}`})
       }
   ))
 };
